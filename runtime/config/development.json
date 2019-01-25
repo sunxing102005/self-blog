@@ -1,0 +1,79 @@
+{
+  "port": 8362,
+  "workers": 0,
+  "stickyCluster": false,
+  "startServerTimeout": 3000,
+  "reloadSignal": "SIGUSR2",
+  "processKillTimeout": 10000,
+  "jsonpCallbackField": "callback",
+  "jsonContentType": "application/json",
+  "jsonpContentType": "application/javascript",
+  "errnoField": "errno",
+  "errmsgField": "errmsg",
+  "defaultErrno": 1000,
+  "validateDefaultErrno": 1001,
+  "cache": {
+    "type": "file",
+    "file": {
+      "timeout": 86400000,
+      "cachePath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/runtime/cache",
+      "pathDepth": 1,
+      "gcInterval": 86400000
+    }
+  },
+  "model": {
+    "type": "mysql",
+    "mysql": {
+      "logConnect": false,
+      "logSql": true,
+      "database": "blog",
+      "prefix": "sx_",
+      "encoding": "utf8",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "user": "root",
+      "password": "mx102005",
+      "dateStrings": true
+    }
+  },
+  "session": {
+    "type": "jwt",
+    "jwt": {
+      "cookie": {
+        "name": "thinkjs"
+      },
+      "secret": "sunx",
+      "tokenType": "header",
+      "tokenName": "access_token",
+      "sign": {
+        "expiresIn": 43200
+      },
+      "verify": {}
+    }
+  },
+  "view": {
+    "type": "ejs",
+    "ejs": {
+      "viewPath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/view",
+      "extname": ".html",
+      "sep": "_"
+    }
+  },
+  "logger": {
+    "type": "console",
+    "console": {},
+    "file": {
+      "backups": 10,
+      "absolute": true,
+      "maxLogSize": 51200,
+      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/logs/app.log"
+    },
+    "dateFile": {
+      "level": "ALL",
+      "absolute": true,
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/logs/app.log"
+    }
+  }
+}
