@@ -1,12 +1,12 @@
 {
-  "name": "test_ele",
+  "name": "self_blog",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "cross-env NODE_ENV=development webpack --env=dev --watch --progress   --config ./build/webpack.dev.conf.js",
     "build": "node build/build.js"
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "mavon-editor": "^2.4.13"
   },
   "devDependencies": {
+    "cross-env": "^5.1.1",
     "@tinymce/tinymce-vue": "^1.0.8",
     "vue-quill-editor": "^3.0.6",
     "autoprefixer": "^7.1.2",

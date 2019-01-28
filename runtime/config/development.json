@@ -16,7 +16,7 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
-      "cachePath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/runtime/cache",
+      "cachePath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog_/runtime/cache",
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -54,7 +54,7 @@
   "view": {
     "type": "ejs",
     "ejs": {
-      "viewPath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/view",
+      "viewPath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog_/view",
       "extname": ".html",
       "sep": "_"
     }
@@ -66,14 +66,14 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
-      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/logs/app.log"
+      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog_/logs/app.log"
     },
     "dateFile": {
       "level": "ALL",
       "absolute": true,
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
-      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog/logs/app.log"
+      "filename": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog_/logs/app.log"
     }
   }
 }

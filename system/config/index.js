@@ -16,9 +16,16 @@ module.exports = {
         pathRewrite: {
           // '^/api':''
         }
+      },
+      "/font": {
+        target: "http://127.0.0.1:8362",
+        changeOrigin: true,
+        pathRewrite: {
+          // '^/api':''
+        }
       }
     },
-
+    assetsRoot: "../www",
     // Various Dev Server settings
     host: "localhost", // can be overwritten by process.env.HOST
     port: 8083, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
