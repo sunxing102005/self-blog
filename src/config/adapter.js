@@ -4,7 +4,8 @@ const mysql = require('think-model-mysql');
 const { Console, File, DateFile } = require('think-logger3');
 const path = require('path');
 const isDev = think.env === 'development';
-const ejs = require('think-view-ejs');
+// const ejs = require('think-view-ejs');
+const nunjucks = require('think-view-nunjucks');
 /**
  * cache adapter config
  * @type {Object}
@@ -75,22 +76,36 @@ exports.session = {
  * view adapter config
  * @type {Object}
  */
+// exports.view = {
+//   type: 'ejs',
+//   common: {
+//     viewPath: path.join(think.ROOT_PATH, 'view'),
+//     extname: '.html',
+//     sep: '_' // seperator between controller and action
+//   },
+//   ejs: {
+//     // options
+//     handle: ejs,
+//     beforeRender: (ejs, handleOptions) => {
+//       // do something before render the template.
+//     }
+//   }
+// };
+// 使用ejs，服务端会缓存模板
 exports.view = {
-  type: 'ejs',
+  type: 'nunjucks',
   common: {
     viewPath: path.join(think.ROOT_PATH, 'view'),
-    extname: '.html',
-    sep: '_' // seperator between controller and action
+    sep: '_',
+    extname: '.html'
   },
-  ejs: {
-    // options
-    handle: ejs,
-    beforeRender: (ejs, handleOptions) => {
-      // do something before render the template.
+  nunjucks: {
+    handle: nunjucks,
+    options: {
+      autoescape: false
     }
   }
 };
-
 /**
  * logger adapter config
  * @type {Object}

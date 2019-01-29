@@ -4,9 +4,10 @@ const utils = require("./utils");
 const config = require("../config");
 const vueLoaderConfig = require("./vue-loader.conf");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const baseFileName = require("../package.json").name;
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const cleanWebpackPlugin = require("clean-webpack-plugin");
+const AssetsPlugin = require("assets-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
@@ -90,6 +91,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new AssetsPlugin({
+      filename: "build/webpack.assets.js",
+      processOutput: function(assets) {
+        return "window.WEBPACK_ASSETS=" + JSON.stringify(assets);
+      }
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       minChunks: function(module) {
@@ -109,23 +116,11 @@ module.exports = {
         baseFileName + "/css/[name].[contenthash].css"
       ),
       allChunks: true
+    }),
+    // 编译前删除之前编译生成的静态资源
+    new cleanWebpackPlugin(["www/static/self_blog", "view/blog"], {
+      root: resolve("../")
     })
-    // https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: "./view/blog/index_index.html",
-    //   template: "./view/index.html",
-    //   title: "博客管理系统",
-    //   favicon: resolve("favicon.ico"),
-    //   chunks: ["manifest", "vendor", "app"],
-    //   inject: true
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: "./view/blog/blog_index.html",
-    //   template: "./view/index.html",
-    //   title: "博客展示",
-    //   inject: true,
-    //   chunks: ["manifest", "vendor", "blog"]
-    // })
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue

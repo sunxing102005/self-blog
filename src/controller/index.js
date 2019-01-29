@@ -1,8 +1,8 @@
 const Base = require('./base.js');
 
 module.exports = class extends Base {
-  indexAction() {
-    // return this.action('content', 'list');
+  async indexAction() {
     return this.display('blog/blog_index');
+    // return this.action('blog', 'index');
   }
 };

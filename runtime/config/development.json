@@ -52,11 +52,14 @@
     }
   },
   "view": {
-    "type": "ejs",
-    "ejs": {
+    "type": "nunjucks",
+    "nunjucks": {
       "viewPath": "/Users/xing.sun/work2018/learn/think-js/projects/self_blog_/view",
+      "sep": "_",
       "extname": ".html",
-      "sep": "_"
+      "options": {
+        "autoescape": false
+      }
     }
   },
   "logger": {
