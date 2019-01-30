@@ -4,17 +4,12 @@ const _import = require("./_import_" + process.env.NODE_ENV);
 Vue.use(Router);
 export const constRout = [
   {
-    path: "/login",
-    hidden: true
-    // component: _import("login/index")
-  },
-  {
     path: "/",
     hidden: true,
     redirect: "/content",
     component: _import("content"),
     meta: {
-      title: "首頁"
+      title: "文章列表"
     },
     children: [
       {
@@ -23,6 +18,14 @@ export const constRout = [
         hidden: true
       }
     ]
+  },
+  {
+    path: "/article",
+    hidden: true,
+    component: _import("article"),
+    meta: {
+      title: "文章内容"
+    }
   }
 ];
 export default new Router({

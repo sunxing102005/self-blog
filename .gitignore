@@ -6,4 +6,5 @@ logs/
 www/uploads
 test/
 www/static
+view/blog
 .vscode

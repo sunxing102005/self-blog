@@ -10,14 +10,15 @@ module.exports = class extends think.Controller {
     this.assign('site', config.site);
 
     // if (this.userInfo) {
-    const user = this.model('user')
+    const user = await this.model('user')
       .cache('user')
     // .where({ id: this.userInfo.id })
       .find();
-    this.assign('user', user);
+    this.assign('user', JSON.stringify(user));
+    // this.assign('username', user.username);
     // }
     const recent = await this.getRecent();
-    this.assign('recent', recent);
+    this.assign('recent', JSON.stringify(recent));
     this.assign('title', '');
   }
   async getRecent() {

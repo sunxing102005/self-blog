@@ -1,22 +1,13 @@
-import Cookie from 'js-cookie'
-import {constRout} from '@/router'
-const config ={
-  state:{
-    sidebar:{
-      collapse:true
-
-    },
-      constRout:constRout
+import Cookie from "js-cookie";
+import { constRout } from "@/router";
+const config = {
+  state: {
+    slug: ""
   },
-  mutations:{
-    toggleSideBar(state){
-      if(state.sidebar.collapse){
-        Cookie.set('sidebarCollapse',1);
-      }else{
-        Cookie.set('sidebarCollapse',0);
-      }
-      state.sidebar.collapse =!state.sidebar.collapse;
+  mutations: {
+    setSlug(state, val) {
+      state.slug = val;
     }
   }
-}
-export default config
+};
+export default config;

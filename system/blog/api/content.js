@@ -7,14 +7,14 @@ export function getList(params) {
     params
   });
 }
-export function getDetail(params, id) {
+export function getDetail(params) {
   return request({
     url: "font/content/detail",
-    method: "post",
-    data: params
+    method: "get",
+    params
   });
 }
-export function comment(params, id) {
+export function pubComment(params) {
   return request({
     url: "font/content/comment",
     method: "post",

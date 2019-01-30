@@ -8,7 +8,10 @@
       href="https://cdn.bootcss.com/element-ui/2.4.0/theme-chalk/index.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <link href="static/home/css/style.css" rel="stylesheet" />
+    <!-- 使用vue开发工具时，引入vue.js，生产时引入vue.min.js -->
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+
     <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
     <script src="https://cdn.bootcss.com/element-ui/2.4.0/index.js"></script>
@@ -40,11 +43,13 @@
         }, 300);
         window.Flexible = flexible;
       })(window, document);
+      window.user = {{ user }};
+      window.recent = {{ recent }};
     </script>
-  <link href="/static/self_blog/css/blog.cf028e1c0a8d9170f1617652eac9ff8f.css" rel="stylesheet"></head>
+  <link href="/static/self_blog/css/blog.82a0e88194915da36a8de02e32143bf1.css" rel="stylesheet"></head>
   <body>
     <div id="app"></div>
     <!-- test-->
     <!-- built files will be auto injected -->
-  <script type="text/javascript" src="/static/self_blog/js/manifest-5622c.js"></script><script type="text/javascript" src="/static/self_blog/js/vendor-5622c.js"></script><script type="text/javascript" src="/static/self_blog/js/blog-5622c.js"></script></body>
+  <script type="text/javascript" src="/static/self_blog/js/manifest-548ee.js"></script><script type="text/javascript" src="/static/self_blog/js/vendor-548ee.js"></script><script type="text/javascript" src="/static/self_blog/js/blog-548ee.js"></script></body>
 </html>

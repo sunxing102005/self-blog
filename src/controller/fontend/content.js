@@ -41,7 +41,7 @@ module.exports = class extends Base {
   async commentAction() {
     const params = {
       status: 99,
-      slug: this.get('slug'),
+      slug: this.post('slug'),
       type: 'post'
     };
     const content = await this.model('content')
@@ -63,13 +63,7 @@ module.exports = class extends Base {
     };
     const insertId = await this.model('comment').add(data);
     if (insertId) {
-      this.redirect(
-        `/${content.category.slug}/${
-          content.slug
-        }.html#comment-${insertId}`
-      );
-    } else {
-      this.redirect(`/${content.category.slug}/${content.slug}.html`);
+      this.success({ insertId });
     }
   }
 };
