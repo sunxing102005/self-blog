@@ -91,20 +91,26 @@ export default {
                       });
     },
     onDelete(id,index){
-        
-        delArticle({id}).then(res=>{
-            if(res.errno==0){
-                this.$message.success({
-                    message: '删除成功！'
-                });
-                this.tableList.splice(index,1);
-            }else{
-                this.$message.error({
-                    message: '删除失败！'
-                });
-            }
-            
+         this.$confirm('此操作将删除该文章, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(()=>{
+            delArticle({id}).then(res=>{
+                if(res.errno==0){
+                    this.$message.success({
+                        message: '删除成功！'
+                    });
+                    this.tableList.splice(index,1);
+                }else{
+                    this.$message.error({
+                        message: '删除失败！'
+                    });
+                }
+                
+            })
         })
+
     }
   }
 }

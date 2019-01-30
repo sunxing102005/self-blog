@@ -1,6 +1,6 @@
 <template>
     <div class="comment-container">
-        <span class="response">Response<a v-show="parent_id!=0" @click.prevent="cancelReply"> /Cancel Reply</a></span>
+        <span class="response">评论<a v-show="parent_id!=0" @click.prevent="cancelReply"> /回复</a></span>
         <div method="post" class="comment-form" role="form">
             <input type="text" v-model="comment.author" maxlength="12" class="form-control input-control clearfix" placeholder="Name (*)" value="" required>
             <input type="email" v-model="comment.email" class="form-control input-control clearfix" placeholder="Email (*)" value="" required>
