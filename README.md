@@ -35,10 +35,10 @@
   ```
   这样就启动完成了
   
- #### 进入页面
+ #### 开发
  启动后访问localhost:8362，自动跳转到博客展示页面，展示博客列表。
  
- 访问localhost:8362/backend，访问后台管理页面。点击文章管理，可以编辑，删除现有文章，点击发布文章新增文章。
+ 访问localhost:8362/backend，访问后台管理页面,增删改博客。
  
  项目的功能介绍系列：<a href="https://blog.csdn.net/qq_36228442/article/details/86715347">Vue+thinkJs博客网站（一）之vue多页面应用的webpack3配置</a>
  
