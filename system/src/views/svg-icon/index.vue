@@ -32,7 +32,6 @@ export default {
     }
   },
   mounted() {
-    debugger
     const iconsMap = icons.state.iconsMap.map((i) => {
       console.log(i.default.id)
       return i.default.id.split('-')[1]
@@ -52,37 +51,37 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .icons-container {
-  margin: 10px 20px 0;
-  overflow: hidden;
-  .icons-wrapper {
-    margin: 0 auto;
-  }
-  .warn-content{
-    background: rgba(66,185,131,.1);
-    border-radius: 2px;
-    padding: 16px;
-    padding: 1rem;
-    line-height: 1.6rem;
-    word-spacing: .05rem;
-    a{
-        color: #42b983;
-        font-weight: 600;
+    margin: 10px 20px 0;
+    overflow: hidden;
+    .icons-wrapper {
+        margin: 0 auto;
     }
+    .warn-content {
+        background: rgba(66, 185, 131, 0.1);
+        border-radius: 2px;
+        padding: 16px;
+        padding: 1rem;
+        line-height: 1.6rem;
+        word-spacing: 0.05rem;
+        a {
+            color: #42b983;
+            font-weight: 600;
+        }
     }
-  .icon-item {
-    margin: 20px;
-    height: 110px;
-    text-align: center;
-    width: 110px;
-    float: left;
-    font-size: 30px;
-    color: #24292e;
-    cursor: pointer;
-  }
-  span {
-    display: block;
-    font-size: 24px;
-    margin-top: 10px;
-  }
+    .icon-item {
+        margin: 20px;
+        height: 110px;
+        text-align: center;
+        width: 110px;
+        float: left;
+        font-size: 30px;
+        color: #24292e;
+        cursor: pointer;
+    }
+    span {
+        display: block;
+        font-size: 24px;
+        margin-top: 10px;
+    }
 }
 </style>

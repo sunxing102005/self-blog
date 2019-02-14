@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <component :is="currClass"></component>
-    </div>
+  <div>
+    <component :is="currClass"></component>
+  </div>
 </template>
 
 <script>
@@ -20,7 +20,6 @@
         ...mapGetters(['roles']  )
       },
       created(){
-          debugger
           if(this.roles.indexOf('admin')!=-1){
             this.currClass = 'adminDashboard'
           }else {
@@ -31,5 +30,4 @@
 </script>
 
 <style scoped>
-
 </style>

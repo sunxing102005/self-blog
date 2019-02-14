@@ -37,7 +37,7 @@
             <el-row>
                 <el-col :span="24">
                     <el-form-item label="文章内容">
-                        <mavon-editor ref=md v-model="article.markdown"></mavon-editor>
+                        <mavon-editor @imgAdd="imgAdd" ref=md v-model="article.markdown"></mavon-editor>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -50,6 +50,7 @@
 
 <script>
 import { getList} from '@/api/category'
+import { upload} from '@/api/image'
 import { addArticle,getContent} from '@/api/content'
 import { mavonEditor } from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
@@ -85,6 +86,15 @@ import 'mavon-editor/dist/css/index.css';
             getOptiopns(type,target){
                 getList({type}).then(res=>{
                     this[target] = res.data;
+                })
+            },
+            imgAdd(pos,$file){
+                let formdata = new FormData();
+                formdata.append('image',$file);
+                upload(formdata).then(res=>{
+                    if(res.errno==0&&res.data.url){
+                        this.$refs['md'].$img2Url(pos,res.data.url);
+                    }
                 })
             },
             saveArticle(){

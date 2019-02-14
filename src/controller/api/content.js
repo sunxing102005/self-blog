@@ -32,6 +32,20 @@ module.exports = class extends BaseRest {
         .select();
       return this.success(data);
     }
+    // 总览数据
+    if (type === 'summary') {
+      data = {};
+      data['view'] = await this.modelInstance
+        .where({ status: 99 })
+        .sum('view');
+      data['count'] = await this.modelInstance
+        .where({ status: 99 })
+        .count();
+      data['comments'] = await this.model('comment')
+        .where({ status: 99 })
+        .count();
+      return this.success(data);
+    }
     // 是否获取全部
     const all = this.get('all');
     if (!all || think.isEmpty(this.userInfo)) {
@@ -90,7 +104,7 @@ module.exports = class extends BaseRest {
         }
       });
       const res = await this.modelInstance.save(data);
-      this.hook('contentUpdate', data);
+      await this.hook('contentUpdate', data);
       if (res) {
         this.success({ id: this.id }, '修改成功!');
       } else {
