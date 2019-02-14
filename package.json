@@ -36,7 +36,8 @@
         "nyc": "^7.0.0",
         "think-babel": "^1.0.3",
         "think-inspect": "0.0.2",
-        "think-watcher": "^3.0.0"
+        "think-watcher": "^3.0.0",
+        "think-view-nunjucks": "~1.0.7"
     },
     "repository": "",
     "license": "MIT",
