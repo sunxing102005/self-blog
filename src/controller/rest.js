@@ -15,13 +15,16 @@ module.exports = class extends think.Controller {
   async __before() {
     this.header('Access-Control-Allow-Origin', '*');
     console.log('_before', 'fffff');
-    this.userInfo = await this.session('userInfo').catch(_ => ({}));
-
+    this.userInfo = await this.session('userInfo').catch(() => {});
+    console.log('userinfo', this.userInfo);
     const isAllowedMethod = this.isMethod('GET');
     const isAllowedResource = this.resource === 'login';
-    const isLogin = !think.isEmpty(this.userInfo);
+    const isLogin = !(
+      think.isEmpty(this.userInfo) ||
+            this.userInfo.TokenExpiredError !== -1
+    );
 
-    if (!isAllowedMethod && !isAllowedResource && !isLogin) {
+    if (!isAllowedResource && !isLogin && !isAllowedMethod) {
       return this.ctx.throw(401, '请登录后操作');
     }
   }
