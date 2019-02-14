@@ -6,14 +6,14 @@ export const constRout = [
   {
     path: "/login",
     hidden: true,
-    component: _import("login/index")
+    component: () => import("@/views/login/index")
   },
   {
     path: "/",
     // name: 'root',
     hidden: true,
     redirect: "/welcome",
-    component: _import("layout/index"),
+    component: () => import("@/views/layout/index"),
     meta: {
       title: "首頁"
     },
@@ -28,7 +28,7 @@ export const constRout = [
   },
   {
     path: "/articles",
-    component: _import("layout/index"),
+    component: () => import("@/views/layout/index"),
     single: true,
     redirect: "/articles/content",
     children: [
@@ -39,7 +39,7 @@ export const constRout = [
           icon: "tree"
         },
         // name: "content",
-        component: _import("articles/index")
+        component: () => import("@/views/articles/index")
       },
       {
         path: "publish",
@@ -49,7 +49,7 @@ export const constRout = [
           icon: "tree"
         },
         // name: "publish",
-        component: _import("articles/publish")
+        component: () => import("@/views/articles/publish")
       }
     ],
     name: "articles",

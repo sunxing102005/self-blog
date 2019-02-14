@@ -30,9 +30,9 @@ router.beforeEach((to, from, next) => {
       console.log("from", from);
       console.log("to", to);
       const top = store.getters.roles;
-      debugger;
       if (store.getters.roles.length == 0) {
         const tt = getName();
+        // next({ ...to });
         store.dispatch("GetInfo", getName()).then(res => {
           console.log("roles", store.getters);
           let currRoles = store.getters.roles;

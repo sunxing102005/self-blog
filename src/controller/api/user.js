@@ -16,7 +16,7 @@ module.exports = class extends BaseRest {
         .find();
       data.avator =
                 'https://secure.gravatar.com/avatar/' + think.md5(data.email);
-      console.log('user:', data);
+      //   console.log('user:', data);
       return this.success(data);
     } else {
       data = await this.modelInstance.select();

@@ -25,9 +25,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
-    path: config.build.assetsRoot,
-    filename: utils.assetsPath("js/[name].[chunkhash].js"),
-    chunkFilename: utils.assetsPath("js/[id].[chunkhash].js")
+    path: resolve(config.dev.assetsRoot),
+    filename: "static/" + baseFileName + "/js/[name]-[chunkhash:5].js",
+    chunkFilename: "static/" + baseFileName + "/js/[name]-[chunkhash:5].js"
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -54,6 +54,28 @@ const webpackConfig = merge(baseWebpackConfig, {
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true
     }),
+    new HtmlWebpackPlugin({
+      filename: resolve(`../view/blog/index_index.html`),
+      template: "./view/index.html",
+      title: "博客管理系统",
+      favicon: resolve("favicon.ico"),
+      inject: true,
+      chunks: ["manifest", "vendor", "app"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: resolve(`../view/blog/blog_index.html`),
+      template: "./view/blog.html",
+      title: "博客展示",
+      inject: true,
+      chunks: ["manifest", "vendor", "blog"]
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, "../static"),
+        to: config.dev.assetsSubDirectory,
+        ignore: [".*"]
+      }
+    ]),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({

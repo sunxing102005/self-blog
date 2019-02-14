@@ -7,7 +7,7 @@ export const constRout = [
     path: "/",
     hidden: true,
     redirect: "/content",
-    component: _import("content"),
+    component: () => import("../views/content"),
     meta: {
       title: "文章列表"
     },
@@ -22,7 +22,7 @@ export const constRout = [
   {
     path: "/article",
     hidden: true,
-    component: _import("article"),
+    component: () => import("../views/article"),
     meta: {
       title: "文章内容"
     }

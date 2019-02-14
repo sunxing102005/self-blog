@@ -14,9 +14,9 @@ module.exports = class extends think.Controller {
   }
   async __before() {
     this.header('Access-Control-Allow-Origin', '*');
-    console.log('_before', 'fffff');
+    // console.log('_before', 'fffff');
     this.userInfo = await this.session('userInfo').catch(() => {});
-    console.log('userinfo', this.userInfo);
+    // console.log('userinfo', this.userInfo);
     const isAllowedMethod = this.isMethod('GET');
     const isAllowedResource = this.resource === 'login';
     const isLogin = !(

@@ -47,6 +47,8 @@ const user = {
     },
     GetInfo({ commit, state }, username) {
       return new Promise((resolve, reject) => {
+        // commit("SET_ROLES", "admin");
+        // resolve({ roles: "admin", name: "sx" });
         getInfo(username)
           .then(res => {
             const data = res.data;

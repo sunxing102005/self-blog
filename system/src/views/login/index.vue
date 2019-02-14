@@ -23,12 +23,12 @@
       </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">账户: admin</span>
-        <span> 密码: admin</span>
+        <span> 密码: 123456</span>
       </div>
-      <div class="tips">
+      <!-- <div class="tips">
         <span style="margin-right:20px;">账户: editor</span>
         <span> 密码: editor</span>
-      </div>
+      </div> -->
     </el-form>
     <!--<el-input placeholder="写点什么..." suffix-icon="el-icon-edit" class="input" >-->
     <!--</el-input>-->
