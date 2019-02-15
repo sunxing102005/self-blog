@@ -11,7 +11,7 @@
         </div>
         <div class="content" v-html="content.content"></div>
         <div class="copyright">
-            <div>本文由{{ user.username }}创作，采用知识共享署名4.0国际许可协议进行许可 </div>
+            <div>本文由Sunx创作，采用知识共享署名4.0国际许可协议进行许可 </div>
             <div>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名</div>
             <div>最后编辑时间 {{content.modify_time|timeFilter}}</div>
         </div>
@@ -35,7 +35,6 @@ export default {
       return {
           title:'',
           content:{},
-          user:window.user
       }
   },
     components:{comment,recent,'blog-navbar':navbar},

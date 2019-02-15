@@ -59,9 +59,11 @@ export const constRout = [
     }
   }
 ];
-export default new Router({
-  routes: constRout
-});
+export default function createRouter() {
+  return new Router({
+    routes: constRout
+  });
+}
 export const asyncRouteMap = [
   {
     path: "/four",

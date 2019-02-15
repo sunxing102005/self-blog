@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <div class="footer-meta">
+        <!-- <div class="footer-meta">
             <div class="footer-container">
                 <div class="meta-item meta-copyright">
                     <div class="meta-copyright-info">
@@ -26,7 +26,7 @@
                     </li>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -38,7 +38,7 @@ export default {
   },
   data(){
       return {
-          recent:window.recent
+          recent:{comment:[],content:[]}
       }
   },
   created(){

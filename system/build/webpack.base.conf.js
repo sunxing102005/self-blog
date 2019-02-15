@@ -5,7 +5,7 @@ const config = require("../config");
 const vueLoaderConfig = require("./vue-loader.conf");
 const webpack = require("webpack");
 const baseFileName = require("../package.json").name;
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const AssetsPlugin = require("assets-webpack-plugin");
 function resolve(dir) {
@@ -15,8 +15,10 @@ function resolve(dir) {
 module.exports = {
   context: path.resolve(__dirname, "../"),
   entry: {
-    app: "./src/main.js",
-    blog: "./blog/index.js"
+    // app: "./src/main.js",
+    // blog: "./blog/index.js"
+    app: "./entry/entry-client-index",
+    blog: "./entry/entry-client-blog"
   },
   output: {
     path: config.build.assetsRoot,
@@ -91,12 +93,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new AssetsPlugin({
-      filename: "build/webpack.assets.js",
-      processOutput: function(assets) {
-        return "window.WEBPACK_ASSETS=" + JSON.stringify(assets);
-      }
-    }),
+    // new AssetsPlugin({
+    //   filename: "build/webpack.assets.js",
+    //   processOutput: function(assets) {
+    //     return "window.WEBPACK_ASSETS=" + JSON.stringify(assets);
+    //   }
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       minChunks: function(module) {
@@ -111,12 +113,7 @@ module.exports = {
       name: "manifest",
       minChunks: Infinity
     }),
-    new ExtractTextPlugin({
-      filename: utils.assetsPath(
-        baseFileName + "/css/[name].[contenthash].css"
-      ),
-      allChunks: true
-    }),
+
     // 编译前删除之前编译生成的静态资源
     new cleanWebpackPlugin(["www/static/self_blog", "view/blog"], {
       root: resolve("../")

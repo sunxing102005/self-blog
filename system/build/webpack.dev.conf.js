@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const portfinder = require("portfinder");
-
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 const baseFileName = require("../package.json").name;
@@ -82,6 +82,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       title: "博客展示",
       inject: true,
       chunks: ["manifest", "vendor", "blog"]
+    }),
+    new ExtractTextPlugin({
+      filename: utils.assetsPath(
+        baseFileName + "/css/[name].[contenthash].css"
+      ),
+      allChunks: true
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

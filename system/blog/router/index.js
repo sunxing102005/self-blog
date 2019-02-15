@@ -6,6 +6,7 @@ export const constRout = [
   {
     path: "/",
     hidden: true,
+    mode: "history",
     redirect: "/content",
     component: () => import("../views/content"),
     meta: {
@@ -28,6 +29,9 @@ export const constRout = [
     }
   }
 ];
-export default new Router({
-  routes: constRout
-});
+// export default new Router({
+//   routes: constRout
+// });
+export default function createRouter() {
+  return new Router({ routes: constRout });
+}

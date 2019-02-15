@@ -6,7 +6,7 @@
                 <div class="title">{{item.title}}</div>
                 <div class="description" v-html="item.description"></div>
                 <div class="bottom">
-                    阅读量 <span class="view-font">{{item.view}} </span> <span class="author">作者 {{item.user.username}} 发布时间 {{item.create_time*1000|timeFilter}}</span>
+                    阅读量 <span class="view-font">{{item.view}} </span> <span class="author">作者 sunx 发布时间 </span>
                 </div>
             </div>
             <div class="thumb-container"></div>

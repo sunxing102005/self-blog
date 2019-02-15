@@ -9,4 +9,7 @@ const store = new Vuex.Store({
   },
   getters
 });
-export default store;
+// export default store;
+export default function createStore() {
+  return store;
+}
