@@ -9,3 +9,4 @@ www/static
 view/blog
 .vscode
 app/
+.idea/

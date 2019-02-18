@@ -8,6 +8,7 @@
                 <el-col :offset="5" :span="6">
                     <el-button type="primary" icon="el-icon-search" @click="fetchData">搜索</el-button>
                     <el-button type="primary" @click="$router.push('/articles/publish')">发布文章</el-button>
+                    <el-button @click="test">TEST</el-button>
                 </el-col>
             </el-row>
         </el-header>
@@ -62,6 +63,19 @@ export default {
   filters: {
   },
   methods: {
+              test() {
+            var form = new FormData();
+            form.append('id', '19');
+            form.append('content', '-1111');
+            axios.post({
+                url: 'http://10.124.18.15:8362/list/edit',
+                headers: {
+                    Cookie:
+                        'user=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieGluZy5zdW4iLCJwYXNzd29yZCI6Inhpbmcuc3VuIiwibGV2ZWwiOjYsImlkIjo3LCJpYXQiOjE1NTA0NTYxNDEsImV4cCI6MTU1MzA0ODE0MX0.KvjZw2z9xUIIRG_YYKv7fybsum8K7mmhlYoodGW6A_8; username=xing.sun'
+                },
+                data: form
+            });
+        },
       changePage(index){
           this.pageIndex = index;
           this.fetchData();

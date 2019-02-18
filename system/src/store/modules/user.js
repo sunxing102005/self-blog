@@ -52,6 +52,7 @@ const user = {
         getInfo(username)
           .then(res => {
             const data = res.data;
+            debugger;
             // commit("SET_NAME", data.name);
             commit("SET_AVATAR", data.avatar);
             commit("SET_ROLES", data.roles);
