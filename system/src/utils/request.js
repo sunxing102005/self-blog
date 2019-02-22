@@ -52,7 +52,6 @@ service.interceptors.response.use(
   },
   error => {
     let errmsg = "";
-    // debugger;
     if (error.response) {
       switch (error.response.status) {
         case 401:

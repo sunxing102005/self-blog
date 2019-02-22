@@ -2,12 +2,16 @@
 const path = require("path");
 const utils = require("./utils");
 const config = require("../config");
+const isServer = process.env.IS_SERVER == "Y";
 const vueLoaderConfig = require("./vue-loader.conf");
+// const vueLoaderConfig = isServer
+//   ? require("./vue-loader.server.conf")
+//   : require("./vue-loader.conf");
+//如果是服务端渲染,不用extract css
 const webpack = require("webpack");
 const baseFileName = require("../package.json").name;
 
 const cleanWebpackPlugin = require("clean-webpack-plugin");
-const AssetsPlugin = require("assets-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
@@ -93,12 +97,6 @@ module.exports = {
     ]
   },
   plugins: [
-    // new AssetsPlugin({
-    //   filename: "build/webpack.assets.js",
-    //   processOutput: function(assets) {
-    //     return "window.WEBPACK_ASSETS=" + JSON.stringify(assets);
-    //   }
-    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       minChunks: function(module) {
@@ -115,7 +113,7 @@ module.exports = {
     }),
 
     // 编译前删除之前编译生成的静态资源
-    new cleanWebpackPlugin(["www/static/self_blog", "view/blog"], {
+    new cleanWebpackPlugin(["www/static/self_blog"], {
       root: resolve("../")
     })
   ],

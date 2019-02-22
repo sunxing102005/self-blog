@@ -5,7 +5,7 @@ const webpack = require("webpack");
 const config = require("../config");
 const merge = require("webpack-merge");
 const baseWebpackConfig = require("./webpack.base.conf");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
@@ -32,7 +32,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      "process.env": env
+      "process.env": require("../config/prod.env"),
+      "process.env.VUE_ENV": '"client"'
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -42,6 +43,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       sourceMap: config.build.productionSourceMap,
       parallel: true
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -55,6 +60,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       allChunks: true
     }),
     new HtmlWebpackPlugin({
+      minify: {},
+      chunksSortMode: "dependency",
+      environment: process.env.NODE_ENV,
       filename: resolve(`../view/blog/index_index.html`),
       template: "./view/index.html",
       title: "博客管理系统",
@@ -69,13 +77,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       inject: true,
       chunks: ["manifest", "vendor", "blog"]
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, "../static"),
-        to: config.dev.assetsSubDirectory,
-        ignore: [".*"]
-      }
-    ]),
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: path.resolve(__dirname, "../static"),
+    //     to: config.dev.assetsSubDirectory,
+    //     ignore: [".*"]
+    //   }
+    // ]),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({

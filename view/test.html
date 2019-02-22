@@ -1,55 +1,529 @@
-<!DOCTYPE html>
+html <!DOCTYPE html>
 <html>
-    <% include header.html %>
-    <body class="" gtools_scp_screen_capture_injected="true">
-        <article
-            class="main-content page-page"
-            itemscope
-            itemtype="http://schema.org/Article"
-        >
-            <div class="post-header">
-                <h1 class="post-title" itemprop="name headline">
-                    <%=content.title%>
-                </h1>
-                <!-- <div class="post-data">
-                    <time
-                        datetime="<%= think.datetime(content.create_time*1000, 'MM DD, YYYY')%>"
-                        itemprop="datePublished"
-                        >Published&nbsp;&nbsp;on&nbsp;&nbsp;
-                        <%=think.datetime(content.create_time*1000,'MM DD,
-                        YYYY')%> </time
-                    >&nbsp;&nbsp;in&nbsp;&nbsp;
-                    <a
-                        href="<%=site.url %>/category/<%= content.category.slug %>/"
-                    >
-                        <%=content.category.slug%> </a
-                    >with<a href="#comments"
-                        >&nbsp;&nbsp;<%=content.comment.length%>&nbsp;&nbsp;comment</a
-                    >
-                </div> -->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>vue管理系统</title>
+        <link
+            href="https://cdn.bootcss.com/element-ui/2.4.0/theme-chalk/index.css"
+            rel="stylesheet"
+        />
+        <link href="static/home/css/style.css" rel="stylesheet" />
+        <!-- 使用vue开发工具时，引入vue.js，生产时引入vue.min.js -->
+        <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+
+        <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+        <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
+        <script src="https://cdn.bootcss.com/element-ui/2.4.0/index.js"></script>
+        <script>
+            // (function(window, document) {
+            //   // 设计稿尺寸 1800
+            //   var designSourceWidth = 1800;
+            //   var flexible = {};
+            //   flexible.px2rem = function(px) {
+            //     return parseInt(px, 10) / 100;
+            //   };
+            //   flexible.mresize = function() {
+            //     var innerWidth =
+            //       (document.documentElement &&
+            //         document.documentElement.clientWidth) ||
+            //       window.innerWidth;
+            //     if (!innerWidth) {
+            //       return;
+            //     }
+            //     var width = innerWidth;
+            //     var fontSize = (width * 100) / designSourceWidth;
+            //     document.documentElement.style.fontSize = fontSize + "px";
+            //   };
+            //   flexible.mresize();
+            //   window.addEventListener("resize", flexible.mresize, false);
+            //   window.addEventListener("load", flexible.mresize, false);
+            //   setTimeout(function() {
+            //     flexible.mresize();
+            //   }, 300);
+            //   window.Flexible = flexible;
+            // })(window, document);
+        </script>
+        <link
+            href="/static/self_blog/css/blog.2da2c2767d15d2efc789faebd95e2710.css"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div id="app" data-server-rendered="true">
+            <div class="container">
+                <div>
+                    <header id="header" class="header bg-white">
+                        <div class="navbar-container">
+                            <a class="navbar-logo"> Sunx</a>
+                            <div class="navbar-menu">
+                                <a>Archives</a><a>About</a><a>Links</a>
+                            </div>
+                            <div class="navbar-search">
+                                <span class="icon-search"></span>
+                                <form
+                                    id="search"
+                                    method="post"
+                                    action="/"
+                                    role="search"
+                                >
+                                    <span class="search-box"
+                                        ><input
+                                            type="text"
+                                            id="input"
+                                            name="s"
+                                            required="required"
+                                            placeholder="Search..."
+                                            maxlength="30"
+                                            autocomplete="off"
+                                            class="input"
+                                    /></span>
+                                </form>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <div class="article-container">
+                    <div class="content-left">
+                        <div class="title">php 闭包与匿名函数</div>
+                        <div class="description">
+                            <p>
+                                提到闭包和匿名函数似乎一下子就想到了 javascript
+                                ，但其实在很多语言中都有闭包的特性。但是
+                                javascript
+                                坑爹的变量作用域让闭包变得非常重要。而其他语言完善私有共有变量和继承让闭包似乎没有什么卵用。但是为了有点B格，还是看了看
+                                php 的闭包。<br />
+                                闭包和匿名函数
+                            </p>
+                        </div>
+                        <div class="bottom">
+                            阅读量 <span class="view-font">31 </span
+                            ><span class="author">作者 admin 发布时间 </span>
+                        </div>
+                    </div>
+                    <div class="thumb-container"></div>
+                </div>
+                <div class="article-container">
+                    <div class="content-left">
+                        <div class="title">PHP 程序设计之观察者模式的实现</div>
+                        <div class="description">
+                            <p>什么是观察者模式？</p>
+                            <p>
+                                一个对象通过添加一个方法（该方法允许另一个对象，即观察者
+                                注册自己）使本身变得可观察。当可观察的对象更改时，它会将消息发送到已注册的观察者。这些
+                                观察者使用该信息执行的操作与可观察的对象无关。结果是对象可以相互对话，而不必了解原因。观察者模式是一种事件系统，意味着这一模式允许某个类观察另一
+                                个类的状态，当被观察的类状态发生改变的时候，观察类可以收到通知并且做出相应的动作;观察者模式为您提供了避免组件之间紧密耦。
+                            </p>
+                        </div>
+                        <div class="bottom">
+                            阅读量 <span class="view-font">47 </span
+                            ><span class="author">作者 admin 发布时间 </span>
+                        </div>
+                    </div>
+                    <div class="thumb-container"></div>
+                </div>
+                <div class="article-container">
+                    <div class="content-left">
+                        <div class="title">PHP 程序设计之工厂模式的实现</div>
+                        <div class="description">
+                            <p>什么是工厂模式？</p>
+                            <p>
+                                由工厂类根据参数来决定创建出哪一种产品类的实例；
+                            </p>
+                            <p>
+                                工厂类是指包含了一个专门用来创建其他对象的方法的类。
+                                所谓按需分配，传入参数进行选择，返回具体的类。
+                                工厂模式的最主要作用就是对象创建的封装、简化创建对象操作。
+                            </p>
+                            <p>
+                                简单的说，就是调用工厂类的一个方法（传入参数）来得到需要的类；
+                            </p>
+                        </div>
+                        <div class="bottom">
+                            阅读量 <span class="view-font">19 </span
+                            ><span class="author">作者 admin 发布时间 </span>
+                        </div>
+                    </div>
+                    <div class="thumb-container"></div>
+                </div>
+                <div class="article-container">
+                    <div class="content-left">
+                        <div class="title">一个漏洞的发现过程</div>
+                        <div class="description">
+                            <p>
+                                无意间发现的一个漏洞。本想提交乌云，结果一看活动时间，今天晚上就要结束了，遂作罢。整个过程都抱着学习的态度记录了一下，整理成文，以记之。
+                            </p>
+                        </div>
+                        <div class="bottom">
+                            阅读量 <span class="view-font">0 </span
+                            ><span class="author">作者 admin 发布时间 </span>
+                        </div>
+                    </div>
+                    <div class="thumb-container"></div>
+                </div>
+                <div class="article-container">
+                    <div class="content-left">
+                        <div class="title">DVI 接口的类别区分</div>
+                        <div class="description">
+                            <p>
+                                这台电脑的时候其实是准备写代码来的，所以没有装显卡。然而代码没写多少又想打游戏了
+                                ，于是去卡吧收了个二手显卡，于是开始了“装卡之旅”。
+                            </p>
+                        </div>
+                        <div class="bottom">
+                            阅读量 <span class="view-font">0 </span
+                            ><span class="author">作者 admin 发布时间 </span>
+                        </div>
+                    </div>
+                    <div class="thumb-container"></div>
+                </div>
+                <ul class="page">
+                    <li class="to-page" style="display:none;">←</li>
+                    <li class="num">1/2</li>
+                    <li class="to-page" style="display:;">→</li>
+                </ul>
+                <div class="footer">
+                    <div class="footer-meta">
+                        <div class="footer-container">
+                            <div class="meta-item meta-copyright">
+                                <div class="meta-copyright-info">
+                                    <a class="info-logo">
+                                        Sunx
+                                    </a>
+                                    <div class="info-text"></div>
+                                </div>
+                            </div>
+                            <div class="meta-item meta-posts">
+                                <h3 class="meta-title">RECENT POSTS</h3>
+                            </div>
+                            <div class="meta-item meta-comments">
+                                <h3 class="meta-title">RECENT COMMENTS</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- <div id="post-content" class="post-content" itemprop="articleBody">
-                <p class="post-tags">
-                    <%content.tag.forEach(function(tag){%>
-                    <a href="<%=site.url %>/tag/<%= tag.slug %>/">
-                        <%=tag.slug%>
-                    </a>
-                    <%});%>
-                </p>
-                <%-content.content%>
-                <p class="post-info">
-                    本文由
-                    <a href="javascript:"> <%=user.username%> </a>创作，采用<a
-                        href="https://creativecommons.org/licenses/by/4.0/"
-                        target="_blank"
-                        rel="external nofollow"
-                        >知识共享署名4.0</a
-                    >国际许可协议进行许可
-                    <br />本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名
-                    <br />最后编辑时间为:
-                    <%=think.datetime(content.modify_time*1000,'MM DD, YYYY')%>
-                </p>
-            </div> -->
-        </article>
+        </div>
+        <script>
+            window.__INITIAL_STATE__ = {
+                app: {
+                    slug: "",
+                    articles: {
+                        list: [
+                            {
+                                id: 8,
+                                title: "php 闭包与匿名函数",
+                                user_id: 1,
+                                slug: "closure",
+                                thumb: "",
+                                category_id: 1,
+                                status: 99,
+                                type: "post",
+                                description:
+                                    "\u003Cp\u003E提到闭包和匿名函数似乎一下子就想到了 javascript ，但其实在很多语言中都有闭包的特性。但是 javascript 坑爹的变量作用域让闭包变得非常重要。而其他语言完善私有共有变量和继承让闭包似乎没有什么卵用。但是为了有点B格，还是看了看 php 的闭包。\u003Cbr \u002F\u003E\n闭包和匿名函数\u003C\u002Fp\u003E\n",
+                                create_time: 1467820800,
+                                modify_time: 1467820800,
+                                view: 31,
+                                category: {
+                                    id: 1,
+                                    name: "tech",
+                                    slug: "tech",
+                                    description: "",
+                                    count: 7
+                                },
+                                tag: [
+                                    {
+                                        id: 6,
+                                        name: "php",
+                                        slug: "php",
+                                        description: "",
+                                        count: 11,
+                                        content_id: 8
+                                    }
+                                ],
+                                user: {
+                                    id: 1,
+                                    username: "admin",
+                                    email: null,
+                                    qq: "",
+                                    github: null,
+                                    weibo: null,
+                                    zhihu: null
+                                },
+                                comment: [
+                                    {
+                                        id: 21,
+                                        content_id: 8,
+                                        author: "OO",
+                                        email: "fdasf",
+                                        url: "fasdfdsa",
+                                        ip: null,
+                                        agent: null,
+                                        text: "dfsadvcv",
+                                        status: 99,
+                                        parent_id: 20,
+                                        create_time: 1548840418,
+                                        parent: {
+                                            id: 20,
+                                            content_id: 8,
+                                            author: "TTT",
+                                            email: "fdsf",
+                                            url: "fsdafdsff",
+                                            ip: null,
+                                            agent: null,
+                                            text: "fdsafsf",
+                                            status: 99,
+                                            parent_id: 14,
+                                            create_time: 1548840275,
+                                            parent: {
+                                                id: 14,
+                                                content_id: 8,
+                                                author: "sx",
+                                                email: "1020059568@qq.com",
+                                                url:
+                                                    "https:\u002F\u002Flscho.com\u002Ftech\u002Fvue-thinkjs.html",
+                                                ip: null,
+                                                agent: null,
+                                                text: "fdsfdsffda",
+                                                status: 99,
+                                                parent_id: 0,
+                                                create_time: 1548328812
+                                            }
+                                        }
+                                    },
+                                    {
+                                        id: 20,
+                                        content_id: 8,
+                                        author: "TTT",
+                                        email: "fdsf",
+                                        url: "fsdafdsff",
+                                        ip: null,
+                                        agent: null,
+                                        text: "fdsafsf",
+                                        status: 99,
+                                        parent_id: 14,
+                                        create_time: 1548840275,
+                                        parent: {
+                                            id: 14,
+                                            content_id: 8,
+                                            author: "sx",
+                                            email: "1020059568@qq.com",
+                                            url:
+                                                "https:\u002F\u002Flscho.com\u002Ftech\u002Fvue-thinkjs.html",
+                                            ip: null,
+                                            agent: null,
+                                            text: "fdsfdsffda",
+                                            status: 99,
+                                            parent_id: 0,
+                                            create_time: 1548328812
+                                        }
+                                    },
+                                    {
+                                        id: 14,
+                                        content_id: 8,
+                                        author: "sx",
+                                        email: "1020059568@qq.com",
+                                        url:
+                                            "https:\u002F\u002Flscho.com\u002Ftech\u002Fvue-thinkjs.html",
+                                        ip: null,
+                                        agent: null,
+                                        text: "fdsfdsffda",
+                                        status: 99,
+                                        parent_id: 0,
+                                        create_time: 1548328812
+                                    }
+                                ]
+                            },
+                            {
+                                id: 6,
+                                title: "PHP 程序设计之观察者模式的实现",
+                                user_id: 1,
+                                slug: "observer",
+                                thumb: null,
+                                category_id: 1,
+                                status: 99,
+                                type: "post",
+                                description:
+                                    "\u003Cp\u003E什么是观察者模式？\u003C\u002Fp\u003E\n\u003Cp\u003E一个对象通过添加一个方法（该方法允许另一个对象，即观察者 注册自己）使本身变得可观察。当可观察的对象更改时，它会将消息发送到已注册的观察者。这些 观察者使用该信息执行的操作与可观察的对象无关。结果是对象可以相互对话，而不必了解原因。观察者模式是一种事件系统，意味着这一模式允许某个类观察另一 个类的状态，当被观察的类状态发生改变的时候，观察类可以收到通知并且做出相应的动作;观察者模式为您提供了避免组件之间紧密耦。\u003C\u002Fp\u003E\n",
+                                create_time: 1466524800,
+                                modify_time: 1521712727,
+                                view: 47,
+                                category: {
+                                    id: 1,
+                                    name: "tech",
+                                    slug: "tech",
+                                    description: "",
+                                    count: 7
+                                },
+                                tag: [
+                                    {
+                                        id: 6,
+                                        name: "php",
+                                        slug: "php",
+                                        description: "",
+                                        count: 11,
+                                        content_id: 6
+                                    }
+                                ],
+                                user: {
+                                    id: 1,
+                                    username: "admin",
+                                    email: null,
+                                    qq: "",
+                                    github: null,
+                                    weibo: null,
+                                    zhihu: null
+                                },
+                                comment: []
+                            },
+                            {
+                                id: 5,
+                                title: "PHP 程序设计之工厂模式的实现 ",
+                                user_id: 1,
+                                slug: "factory-html",
+                                thumb: null,
+                                category_id: 2,
+                                status: 99,
+                                type: "post",
+                                description:
+                                    "\u003Cp\u003E什么是工厂模式？\u003C\u002Fp\u003E\n\u003Cp\u003E由工厂类根据参数来决定创建出哪一种产品类的实例；\u003C\u002Fp\u003E\n\u003Cp\u003E工厂类是指包含了一个专门用来创建其他对象的方法的类。 所谓按需分配，传入参数进行选择，返回具体的类。 工厂模式的最主要作用就是对象创建的封装、简化创建对象操作。\u003C\u002Fp\u003E\n\u003Cp\u003E简单的说，就是调用工厂类的一个方法（传入参数）来得到需要的类；\u003C\u002Fp\u003E\n",
+                                create_time: 1466352000,
+                                modify_time: 1521712719,
+                                view: 19,
+                                category: {
+                                    id: 2,
+                                    name: "life",
+                                    slug: "life",
+                                    description: "",
+                                    count: 3
+                                },
+                                tag: [
+                                    {
+                                        id: 6,
+                                        name: "php",
+                                        slug: "php",
+                                        description: "",
+                                        count: 11,
+                                        content_id: 5
+                                    }
+                                ],
+                                user: {
+                                    id: 1,
+                                    username: "admin",
+                                    email: null,
+                                    qq: "",
+                                    github: null,
+                                    weibo: null,
+                                    zhihu: null
+                                },
+                                comment: []
+                            },
+                            {
+                                id: 4,
+                                title: "一个漏洞的发现过程",
+                                user_id: 1,
+                                slug: "ly-bug",
+                                thumb: null,
+                                category_id: 1,
+                                status: 99,
+                                type: "post",
+                                description:
+                                    "\u003Cp\u003E无意间发现的一个漏洞。本想提交乌云，结果一看活动时间，今天晚上就要结束了，遂作罢。整个过程都抱着学习的态度记录了一下，整理成文，以记之。\u003C\u002Fp\u003E\n",
+                                create_time: 1465660800,
+                                modify_time: 1521712711,
+                                view: 0,
+                                category: {
+                                    id: 1,
+                                    name: "tech",
+                                    slug: "tech",
+                                    description: "",
+                                    count: 7
+                                },
+                                tag: [
+                                    {
+                                        id: 15,
+                                        name: "bug",
+                                        slug: "bug",
+                                        description: "",
+                                        count: 0,
+                                        content_id: 4
+                                    }
+                                ],
+                                user: {
+                                    id: 1,
+                                    username: "admin",
+                                    email: null,
+                                    qq: "",
+                                    github: null,
+                                    weibo: null,
+                                    zhihu: null
+                                },
+                                comment: []
+                            },
+                            {
+                                id: 3,
+                                title: "DVI 接口的类别区分",
+                                user_id: 1,
+                                slug: "dvi",
+                                thumb: null,
+                                category_id: 1,
+                                status: 99,
+                                type: "post",
+                                description:
+                                    "\u003Cp\u003E这台电脑的时候其实是准备写代码来的，所以没有装显卡。然而代码没写多少又想打游戏了 ，于是去卡吧收了个二手显卡，于是开始了“装卡之旅”。\u003C\u002Fp\u003E\n",
+                                create_time: 1465315200,
+                                modify_time: 1521712701,
+                                view: 0,
+                                category: {
+                                    id: 1,
+                                    name: "tech",
+                                    slug: "tech",
+                                    description: "",
+                                    count: 7
+                                },
+                                tag: [
+                                    {
+                                        id: 18,
+                                        name: "it",
+                                        slug: "it",
+                                        description: "",
+                                        count: 0,
+                                        content_id: 3
+                                    }
+                                ],
+                                user: {
+                                    id: 1,
+                                    username: "admin",
+                                    email: null,
+                                    qq: "",
+                                    github: null,
+                                    weibo: null,
+                                    zhihu: null
+                                },
+                                comment: []
+                            }
+                        ],
+                        total: 2,
+                        currPage: 1
+                    }
+                }
+            };
+        </script>
+        <!--vue-ssr-outlet-->
+        <!-- test-->
+        <!-- built files will be auto injected -->
+        <script
+            type="text/javascript"
+            src="/static/self_blog/js/manifest-864ec.js"
+        ></script
+        ><script
+            type="text/javascript"
+            src="/static/self_blog/js/vendor-f327b.js"
+        ></script
+        ><script
+            type="text/javascript"
+            src="/static/self_blog/js/blog-47b7c.js"
+        ></script>
     </body>
 </html>

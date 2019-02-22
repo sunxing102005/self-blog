@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <!-- <div class="footer-meta">
+        <div class="footer-meta">
             <div class="footer-container">
                 <div class="meta-item meta-copyright">
                     <div class="meta-copyright-info">
@@ -8,8 +8,8 @@
                             Sunx
                         </a>
                         <div class="info-text">
-                            <p> Project created by <a href="https://thinkjs.org/" target="_blank">ThinkJS</a></p>
-                            <p> Powered by <a href="https://github.com/sunxing102005/self_blog" target="_blank">SUNX</a></p>
+                            <!-- <p> Project created by <a href="https://thinkjs.org/" target="_blank">ThinkJS</a></p>
+                            <p> Powered by <a href="https://github.com/sunxing102005/self_blog" target="_blank">SUNX</a></p> -->
                         </div>
                     </div>
                 </div>
@@ -26,22 +26,28 @@
                     </li>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </template>
 
 <script>
+import {getRecent} from '../api/content'
 export default {
   name: 'recent',
   computed: {
   },
   data(){
       return {
-          recent:{comment:[],content:[]}
+          recent:{content:[],comment:[]}
       }
   },
   created(){
+    //   getRecent({type:'recent'}).then(res=>{
+    //       const data = res.data;
+    //       this.recent = data.recent;
+    //     //   debugger
+    //   })
   },
   mounted(){
   },
@@ -59,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped >
+<style lang="less" >
 .footer-meta {
     margin-top: 0.3rem;
     border-top: 1px solid #e0e0e0;

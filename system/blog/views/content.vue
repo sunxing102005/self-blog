@@ -5,9 +5,7 @@
             <div class="content-left" @click="toArticle(item.slug)">
                 <div class="title">{{item.title}}</div>
                 <div class="description" v-html="item.description"></div>
-                <div class="bottom">
-                    阅读量 <span class="view-font">{{item.view}} </span> <span class="author">作者 sunx 发布时间 </span>
-                </div>
+                <div class="bottom">阅读量 <span class="view-font">{{item.view}} </span> <span class="author">作者 {{item.user.username}} 发布时间 </span></div>
             </div>
             <div class="thumb-container"></div>
         </div>
@@ -16,14 +14,14 @@
             <li class="num">{{currPage+'/'+total}}</li>
             <li class="to-page" @click="toPage('next')" v-show="currPage!=total">→</li>
         </ul>
-        <recent></recent>
+        <!-- <recent></recent> -->
     </div>
 </template>
 
 <script>
 import {getList} from '../api/content';
 import navbar from './navbar';
-import {  mapMutations } from 'vuex';
+import {  mapMutations,mapGetters } from 'vuex';
 import recent from './recent';
 export default {
   name: 'list',
@@ -34,8 +32,29 @@ export default {
           currPage:1
       }
   },
+  computed:{
+       ...mapGetters(['articles'])
+  },
   created(){
-      this.getData(1);
+    //   this.getData(1);
+    if(this.articles){
+        const val = this.articles;
+         this.list = val.list;
+              this.total = val.total;
+              this.currPage = val.currPage;
+    }
+  },
+  watched:{
+      articles(val){
+          if(val.list.length>0){
+              this.list = val.list;
+              this.total = val.total;
+              this.currPage = val.currPage;
+          }
+      }
+  },
+  serverRequest({store}){
+      return store.dispatch('fetchArticles');
   },
   components:{
       'blog-navbar':navbar,recent
@@ -132,7 +151,7 @@ export default {
     }
     .page {
         width: 100%;
-        height: 0.4rem;
+        height: 0.8rem;
         text-align: center;
         font-size: 0.18rem;
         list-style: none;
@@ -140,7 +159,7 @@ export default {
             display: inline-block;
             height: 0.3rem;
             line-height: 0.3rem;
-            width: 0.5rem;
+            width: 1.7rem;
         }
         .to-page {
             color: #5f5f5f;

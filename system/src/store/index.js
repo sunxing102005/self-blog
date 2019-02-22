@@ -15,6 +15,7 @@ const store = new Vuex.Store({
   },
   getters
 });
-export default function createStore() {
-  return store;
-}
+export default store;
+//  function createStore() {
+//   return store;
+// }

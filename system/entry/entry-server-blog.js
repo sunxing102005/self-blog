@@ -29,34 +29,38 @@ export default context => {
 
     const app = createApp();
     const router = app.$router;
+    const store = app.$store;
     router.push(context.url);
+    console.log("context1", context);
     // 等到 router 将可能的异步组件和钩子函数解析完
     router.onReady(() => {
       //router.onReady 避免请求404
-      // console.log("context.url", context.url);
-      // console.log("app.$router", app.$router);
       const matchedComponents = router.getMatchedComponents();
-      console.log("matchedComponents", matchedComponents);
       // 匹配不到的路由，执行 reject 函数，并返回 404
       if (!matchedComponents.length) {
         return reject({ code: 404 });
       }
-      resolve(app);
-      // Promise.all(
-      //     matchedComponents.map(
-      //         ({ asyncData }) =>
-      //             asyncData &&
-      //             asyncData({
-      //                 store,
-      //                 route: router.currentRoute
-      //             })
-      //     )
-      // )
-      //     .then(() => {
-      //         context.state = store.state;
-      //         resolve(app);
-      //     })
-      //     .catch(reject);
+      Promise.all(
+        matchedComponents.map(item => {
+          // console.log("item:", item);
+          // console.log("serverRequest:", item["serverRequest"]);
+          if (item) {
+            const serverRequest = item["serverRequest"];
+            if (serverRequest) {
+              return serverRequest({
+                store,
+                route: router.currentRoute
+              });
+            }
+          }
+        })
+      )
+        .then(() => {
+          context.state = store.state;
+          // console.log("context2", context);
+          resolve(app);
+        })
+        .catch(reject);
     }, reject);
   });
 };

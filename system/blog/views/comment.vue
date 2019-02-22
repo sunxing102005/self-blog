@@ -112,7 +112,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped >
+<style lang="less"  >
 .comment-container {
     padding: 0.3rem 0 0.3rem 0;
     .response {

@@ -10,46 +10,42 @@
     />
     <link href="static/home/css/style.css" rel="stylesheet" />
     <!-- 使用vue开发工具时，引入vue.js，生产时引入vue.min.js -->
-    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
 
     <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
     <script src="https://cdn.bootcss.com/element-ui/2.4.0/index.js"></script>
     <script>
-      (function(window, document) {
-        // 设计稿尺寸 1800
-        var designSourceWidth = 1800;
-        var flexible = {};
-        flexible.px2rem = function(px) {
-          return parseInt(px, 10) / 100;
-        };
-        flexible.mresize = function() {
-          var innerWidth =
-            (document.documentElement &&
-              document.documentElement.clientWidth) ||
-            window.innerWidth;
-          if (!innerWidth) {
-            return;
-          }
-          var width = innerWidth;
-          var fontSize = (width * 100) / designSourceWidth;
-          document.documentElement.style.fontSize = fontSize + "px";
-        };
-        flexible.mresize();
-        window.addEventListener("resize", flexible.mresize, false);
-        window.addEventListener("load", flexible.mresize, false);
-        setTimeout(function() {
-          flexible.mresize();
-        }, 300);
-        window.Flexible = flexible;
-      })(window, document);
-      window.user = {{ user }};
-      window.recent = {{ recent }};
+      // (function(window, document) {
+      //   // 设计稿尺寸 1800
+      //   var designSourceWidth = 1800;
+      //   var flexible = {};
+      //   flexible.px2rem = function(px) {
+      //     return parseInt(px, 10) / 100;
+      //   };
+      //   flexible.mresize = function() {
+      //     var innerWidth =
+      //       (document.documentElement &&
+      //         document.documentElement.clientWidth) ||
+      //       window.innerWidth;
+      //     if (!innerWidth) {
+      //       return;
+      //     }
+      //     var width = innerWidth;
+      //     var fontSize = (width * 100) / designSourceWidth;
+      //     document.documentElement.style.fontSize = fontSize + "px";
+      //   };
+      //   flexible.mresize();
+      //   window.addEventListener("resize", flexible.mresize, false);
+      //   window.addEventListener("load", flexible.mresize, false);
+      //   setTimeout(function() {
+      //     flexible.mresize();
+      //   }, 300);
+      //   window.Flexible = flexible;
+      // })(window, document);
     </script>
-  </head>
+  <link href="/static/self_blog/css/blog.de61fc66f6588e157543312f23b64081.css" rel="stylesheet"></head>
   <body>
-    <div id="app"></div>
-    <!-- test-->
-    <!-- built files will be auto injected -->
-  <script type="text/javascript" src="/static/self_blog/js/manifest-ccda6.js"></script><script type="text/javascript" src="/static/self_blog/js/vendor-ccda6.js"></script><script type="text/javascript" src="/static/self_blog/js/blog-ccda6.js"></script></body>
+    <!--vue-ssr-outlet-->
+  <script type="text/javascript" src="/static/self_blog/js/manifest-0d0ca.js"></script><script type="text/javascript" src="/static/self_blog/js/vendor-f327b.js"></script><script type="text/javascript" src="/static/self_blog/js/blog-886a1.js"></script></body>
 </html>

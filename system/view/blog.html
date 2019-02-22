@@ -10,7 +10,7 @@
     />
     <link href="static/home/css/style.css" rel="stylesheet" />
     <!-- 使用vue开发工具时，引入vue.js，生产时引入vue.min.js -->
-    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
 
     <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
@@ -43,13 +43,9 @@
         }, 300);
         window.Flexible = flexible;
       })(window, document);
-      window.user = {{ user }};
-      window.recent = {{ recent }};
     </script>
   </head>
   <body>
-    <div id="app"></div>
-    <!-- test-->
-    <!-- built files will be auto injected -->
+    <!--vue-ssr-outlet-->
   </body>
 </html>

@@ -6,11 +6,12 @@ import ElementUI from "element-ui";
 import "@/styles/index.scss"; // global css
 import "@/icons"; // icon
 import "@/permission";
+import { expRouter } from "@/permission";
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 import { createApp } from "../src/main";
-const app = createApp();
+const app = createApp(expRouter);
 
 // 绑定app根元素
 window.onload = function() {

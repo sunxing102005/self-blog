@@ -2,11 +2,8 @@
     <div>
         <header id="header" class="header bg-white">
             <div class="navbar-container">
-                <a @click.prevent="$router.push('/content')" class="navbar-logo">
-                    Sunx</a>
-                <div class="navbar-menu">
-                    <a>Archives</a><a>About</a><a>Links</a>
-                </div>
+                <a @click.prevent="$router.push('/content')" class="navbar-logo">Sunx</a>
+                <div class="navbar-menu"><a>Archives</a><a>About</a><a>Links</a></div>
                 <div class="navbar-search">
                     <span class="icon-search"></span>
                     <form id="search" method="post" action="/" role="search">
@@ -36,7 +33,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped >
+<style lang="less" >
 .header {
     width: 84%;
     .navbar-container {

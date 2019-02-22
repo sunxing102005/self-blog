@@ -54,15 +54,18 @@ module.exports = class extends Base {
             );
         }
         this.header("Cache-Control", "no-store");
-        const IP = this.ctx.ip;
-        think.logger.info("request:ip" + IP);
-        const user = await this.model("user")
-            .cache("user")
-            .find();
+        // const IP = this.ctx.ip;
+        // think.logger.info("request:ip" + IP);
+        // const user = await think.cache("user");
+        // const recent = {
+        //     content: think.cache("recent_content"),
+        //     comment: think.cache("recent_comment")
+        // };
         const html = await this.serverRender({
-            IP: IP,
-            env: think.env,
-            user
+            // IP: IP,
+            // env: think.env,
+            // user: JSON.stringify(user).replace(/\"/g, "'"),
+            // recent: JSON.stringify(recent)
         });
         think.logger.info("html", html);
         this.ctx.body = html;

@@ -1,28 +1,23 @@
 import Vue from "vue";
 import Router from "vue-router";
-const _import = require("./_import_" + process.env.NODE_ENV);
 Vue.use(Router);
 export const constRout = [
   {
     path: "/",
-    hidden: true,
-    mode: "history",
-    redirect: "/content",
     component: () => import("../views/content"),
     meta: {
       title: "文章列表"
-    },
-    children: [
-      {
-        path: "content",
-        name: "content",
-        hidden: true
-      }
-    ]
+    }
+    // children: [
+    //   {
+    //     path: "content",
+    //     name: "content",
+    //     hidden: true
+    //   }
+    // ]
   },
   {
     path: "/article",
-    hidden: true,
     component: () => import("../views/article"),
     meta: {
       title: "文章内容"
@@ -33,5 +28,9 @@ export const constRout = [
 //   routes: constRout
 // });
 export default function createRouter() {
-  return new Router({ routes: constRout });
+  return new Router({
+    fallback: false,
+    // scrollBehavior: () => ({ y: 0 }),
+    routes: constRout
+  });
 }

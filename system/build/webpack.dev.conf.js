@@ -28,8 +28,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: config.dev.devtool,
   output: {
     path: resolve(config.dev.assetsRoot),
-    filename: "static/" + baseFileName + "/js/[name]-[hash:5].js",
-    chunkFilename: "static/" + baseFileName + "/js/[name]-[id:5].js"
+    filename: "static/" + baseFileName + "/js/[name]-[chunkHash:5].js"
+    chunkFilename: "static/" + baseFileName + "/js/[name]-[chunkhash:5].js"
   },
 
   // these devServer options should be customized in /config/index.js
@@ -69,6 +69,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      minify: {},
+      chunksSortMode: "dependency",
+      environment: process.env.NODE_ENV,
       filename: resolve(`../view/blog/index_index.html`),
       template: "./view/index.html",
       title: "博客管理系统",
@@ -89,14 +92,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ),
       allChunks: true
     })
-    // copy custom static assets
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: path.resolve(__dirname, "../static"),
-    //     to: config.dev.assetsSubDirectory,
-    //     ignore: [".*"]
-    //   }
-    // ])
   ]
 });
 module.exports = devWebpackConfig;

@@ -2,11 +2,18 @@ import axios from "axios";
 // import { Message } from "element-ui";
 // 创建axios实例
 const service = axios.create({
-  // baseURL: process.env.BASE_API, // api的base_url
+  baseURL: "http://localhost:8362", // api的base_url
+  // port: "8362",
+  // proxy: {
+  //   host: "127.0.0.1",
+  //   port: 8362
+  // },
+
   timeout: 15000 // 请求超时时间
 });
 service.interceptors.response.use(
   data => {
+    // console.log("res data:", data.data);
     if (!data || typeof data.data !== "object") {
       console.error("服务器响应格式错误");
     } else {
@@ -35,6 +42,7 @@ service.interceptors.response.use(
   error => {
     let errmsg = "";
     // debugger;
+    console.log("errorITM", error);
     if (error.response) {
       switch (error.response.status) {
         case 401:
