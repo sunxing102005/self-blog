@@ -17,6 +17,10 @@ function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
 const devWebpackConfig = merge(baseWebpackConfig, {
+  entry: {
+    app: "./entry/entry-client-index",
+    blog: "./entry/entry-client-blog"
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.dev.cssSourceMap,
@@ -28,7 +32,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: config.dev.devtool,
   output: {
     path: resolve(config.dev.assetsRoot),
-    filename: "static/" + baseFileName + "/js/[name]-[chunkHash:5].js"
+    filename: "static/" + baseFileName + "/js/[name]-[chunkHash:5].js",
     chunkFilename: "static/" + baseFileName + "/js/[name]-[chunkhash:5].js"
   },
 
@@ -84,6 +88,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: "./view/blog.html",
       title: "博客展示",
       inject: true,
+      favicon: resolve("favicon.ico"),
       chunks: ["manifest", "vendor", "blog"]
     }),
     new ExtractTextPlugin({

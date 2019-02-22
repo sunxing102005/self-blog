@@ -25,6 +25,11 @@
                         <span>{{new Date(scope.row.create_time * 1000).toLocaleString()}}</span>
                     </template>
                 </el-table-column>
+                <el-table-column prop="status" label="状态">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.status=='99'?'发布':'草稿'}}</span>
+                    </template>
+                </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-button type="primary" size="mini" @click="onEdit(scope.row.id)">编辑</el-button>
@@ -68,14 +73,13 @@ export default {
       },
     fetchData(){
       const param = {
-       ...this.params,pageSize:this.pageSize,page:this.pageIndex
+       ...this.params,pageSize:this.pageSize,page:this.pageIndex,all:'all'
       };
       getContent(param).then(res=>{
           const data = res.data;
           console.log('data',data);
         this.total = data.count;
         this.tableList =data.data;
-        this.total = data.data.length;
       }).catch((err)=>{
             this.$message.error({
             message: '文章查询失败'

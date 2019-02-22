@@ -53,7 +53,6 @@ import { getList} from '@/api/category'
 import { upload} from '@/api/image'
 import { addArticle,getContent} from '@/api/content'
 import { mavonEditor } from 'mavon-editor';
-// import 'mavon-editor/dist/css/index.css';
     export default {
         name: "publish",
         components:{

@@ -2,12 +2,7 @@
 const path = require("path");
 const utils = require("./utils");
 const config = require("../config");
-const isServer = process.env.IS_SERVER == "Y";
 const vueLoaderConfig = require("./vue-loader.conf");
-// const vueLoaderConfig = isServer
-//   ? require("./vue-loader.server.conf")
-//   : require("./vue-loader.conf");
-//如果是服务端渲染,不用extract css
 const webpack = require("webpack");
 const baseFileName = require("../package.json").name;
 
@@ -18,12 +13,7 @@ function resolve(dir) {
 
 module.exports = {
   context: path.resolve(__dirname, "../"),
-  entry: {
-    // app: "./src/main.js",
-    // blog: "./blog/index.js"
-    app: "./entry/entry-client-index",
-    blog: "./entry/entry-client-blog"
-  },
+
   output: {
     path: config.build.assetsRoot,
     filename: "[name].js",
@@ -36,7 +26,8 @@ module.exports = {
     extensions: [".js", ".vue", ".json"],
     alias: {
       vue$: "vue/dist/vue.esm.js",
-      "@": resolve("src")
+      "@": resolve("src"),
+      asset: resolve("src/asset")
     }
   },
   externals: {

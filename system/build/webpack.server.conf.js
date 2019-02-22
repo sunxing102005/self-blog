@@ -28,7 +28,6 @@ module.exports = Object.assign({}, base, {
   devtool: "#source-map",
   entry: {
     app: "./entry/entry-server-blog"
-    // blog: "./entry/entry-server-blog"
   },
   output: Object.assign(
     {},

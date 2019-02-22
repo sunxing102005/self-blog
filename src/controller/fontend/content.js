@@ -24,16 +24,17 @@ module.exports = class extends Base {
     }
     async detailAction() {
         const params = {
-            status: "99",
-            type: "post",
+            // status: "99",
+            // type: "post",
             slug: this.get("slug")
         };
         const content = await this.model("content")
             .where(params)
             .find();
-        if (think.isEmpty(content)) {
-            return this.redirect("/");
-        }
+        // console.log("detail1", content);
+        // if (think.isEmpty(content)) {
+        //     return this.redirect("/");
+        // }
         this.assign("content", content);
         this.assign("title", content.title);
         const replyTo = this.get("replyTo") || 0;
@@ -43,7 +44,6 @@ module.exports = class extends Base {
             .where(params)
             .increment("view");
         return this.success({ content: content });
-        // return this.display('content');
     }
     async commentAction() {
         const params = {

@@ -16,6 +16,10 @@ function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
 const webpackConfig = merge(baseWebpackConfig, {
+  entry: {
+    app: "./entry/entry-client-index",
+    blog: "./entry/entry-client-blog"
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -74,6 +78,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: resolve(`../view/blog/blog_index.html`),
       template: "./view/blog.html",
       title: "博客展示",
+      favicon: resolve("favicon.ico"),
       inject: true,
       chunks: ["manifest", "vendor", "blog"]
     }),

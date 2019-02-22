@@ -67,7 +67,7 @@ module.exports = class extends Base {
             // user: JSON.stringify(user).replace(/\"/g, "'"),
             // recent: JSON.stringify(recent)
         });
-        think.logger.info("html", html);
+        // think.logger.info("html", html);
         this.ctx.body = html;
 
         // return this.display('blog/blog_index');

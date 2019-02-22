@@ -3,7 +3,7 @@
 import Vue from "vue";
 import App from "./App";
 import store from "./store";
-
+import "mavon-editor/dist/css/index.css";
 /* eslint-disable no-new */
 // new Vue({
 //   el: "#app",

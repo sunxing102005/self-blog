@@ -34,7 +34,9 @@ export default {
   data(){
       return {
           title:'',
-          content:{},
+          content:{
+              modify_time:''
+          },
       }
   },
     components:{comment,recent,'blog-navbar':navbar},
@@ -43,11 +45,16 @@ export default {
   },
     filters:{
       timeFilter(val){
-          const time = new Date(val*1000);
-          const year = time.getFullYear();
-          const month = time.getMonth()+1;
-          const day = time.getDate();
-          return `${day},${month},${year}`;
+          if(val){
+            const time = new Date(val*1000);
+            const year = time.getFullYear();
+            const month = time.getMonth()+1;
+            const day = time.getDate();
+            return `${day},${month},${year}`;
+          }else{
+              return ''
+          }
+          
       }
   },
   methods:{
