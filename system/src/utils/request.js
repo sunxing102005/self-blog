@@ -53,21 +53,27 @@ service.interceptors.response.use(
   error => {
     let errmsg = "";
     if (error.response) {
+      console.log("LLLLLLLL");
       switch (error.response.status) {
         case 401:
-          MessageBox.confirm(
-            "你已被登出，可以取消继续留在该页面，或者重新登录",
-            "确定登出",
-            {
-              confirmButtonText: "重新登录",
-              cancelButtonText: "取消",
-              type: "warning"
-            }
-          ).then(() => {
+          // MessageBox.confirm(
+          //   "你已被登出，可以取消继续留在该页面，或者重新登录",
+          //   "确定登出",
+          //   {
+          //     confirmButtonText: "重新登录",
+          //     cancelButtonText: "取消",
+          //     type: "warning"
+          //   }
+          // ).then(() => {
+          //   store.dispatch("FedLogOut").then(() => {
+          //     location.reload(); // 为了重新实例化vue-router对象 避免bug
+          //   });
+          // });
+          Message.error("重新登录").then(() => [
             store.dispatch("FedLogOut").then(() => {
               location.reload(); // 为了重新实例化vue-router对象 避免bug
-            });
-          });
+            })
+          ]);
           break;
       }
     }

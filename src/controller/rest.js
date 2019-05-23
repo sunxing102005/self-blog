@@ -21,7 +21,8 @@ module.exports = class extends think.Controller {
         const isAllowedResource = this.resource === "login";
         const isLogin = !(
             think.isEmpty(this.userInfo) ||
-            typeof this.userInfo.TokenExpiredError !== "undefined"
+            typeof this.userInfo.TokenExpiredError !== "undefined" ||
+            (this.userInfo.name && this.userInfo.name.indexOf("Error") != -1)
         );
 
         if (!isAllowedResource && !isLogin && !isAllowedMethod) {

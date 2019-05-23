@@ -15,11 +15,37 @@ module.exports = class extends Base {
             .countSelect();
         return this.success({ content: list });
     }
+    async listNoPageAction() {
+        const condition = {
+            status: 99,
+            type: "post"
+        };
+        let defaultOrderby = "create_time desc";
+        let defaultFieldReverse = "markdown";
+        let recommend = this.get("recommend");
+        let orderby = this.get("orderby");
+        let fieldReverse = this.get("fieldReverse");
+        let category_id = this.get("category_id");
+        category_id ? (condition["category_id"] = category_id) : "";
+        !fieldReverse ? (fieldReverse = defaultFieldReverse) : "";
+        recommend ? (condition["recommend"] = recommend) : "";
+        orderby ? "" : (orderby = defaultOrderby);
+        const list = await this.model("content")
+            .where(condition)
+            .fieldReverse(fieldReverse)
+            .order(orderby)
+            .select();
+        return this.success({ content: list });
+    }
     async recentAction() {
         const recent = {
             content: await think.cache("recent_content"),
             comment: await think.cache("recent_comment")
         };
+        return this.success({ recent });
+    }
+    async recentFiveBlogsAction() {
+        const recent = await this.getRecent();
         return this.success({ recent });
     }
     async detailAction() {
@@ -35,6 +61,23 @@ module.exports = class extends Base {
         // if (think.isEmpty(content)) {
         //     return this.redirect("/");
         // }
+        this.assign("content", content);
+        this.assign("title", content.title);
+        const replyTo = this.get("replyTo") || 0;
+        this.assign("replyTo", replyTo);
+        // 增加阅读量
+        this.model("content")
+            .where(params)
+            .increment("view");
+        return this.success({ content: content });
+    }
+    async getBlogByIdAction() {
+        const params = {
+            id: this.get("id")
+        };
+        const content = await this.model("content")
+            .where(params)
+            .find();
         this.assign("content", content);
         this.assign("title", content.title);
         const replyTo = this.get("replyTo") || 0;

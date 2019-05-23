@@ -37,7 +37,7 @@
             <el-row>
                 <el-col :span="24">
                     <el-form-item label="文章内容">
-                        <mavon-editor @imgAdd="imgAdd" ref=md v-model="article.markdown"></mavon-editor>
+                        <mavon-editor class="mavon-class" @imgAdd="imgAdd" ref=md v-model="article.markdown"></mavon-editor>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -141,5 +141,8 @@ import { mavonEditor } from 'mavon-editor';
 }
 .publish-container .el-form-item__content {
     text-align: left !important;
+}
+.mavon-class {
+    /* width: 1200px; */
 }
 </style>

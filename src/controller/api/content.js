@@ -55,13 +55,18 @@ module.exports = class extends BaseRest {
         }
         // 是否获取全部
         const all = this.get("all");
-        if (!all || think.isEmpty(this.userInfo)) {
+        // if (!all || think.isEmpty(this.userInfo)) {
+        if (!all) {
             params.status = 99;
         }
         // 关键词
         const key = this.get("key");
         if (key) {
             params["title|description"] = ["like", `%${key}%`];
+        }
+        const status = this.get("status");
+        if (status) {
+            params.status = status;
         }
         // 内容类型
         const contentType = this.get("contentType") || "post";
@@ -85,9 +90,11 @@ module.exports = class extends BaseRest {
     }
     async postAction() {
         const userInfo = this.userInfo;
-        const createTime = this.post("create_time")
-            ? new Date(this.post("create_time")).getTime() / 1000
-            : new Date().getTime() / 1000;
+        const createTime = this.post("date");
+        let publishTime = null;
+        if (this.post("status") != 1) {
+            publishTime = createTime;
+        }
         const data = {
             user_id: userInfo.id,
             title: this.post("title"),
@@ -99,7 +106,9 @@ module.exports = class extends BaseRest {
             tag: this.post("tag"),
             type: this.post("type"),
             thumb: this.post("thumb") || "",
+            publishTime,
             view: 0,
+            recommend: this.post("recommend"),
             // create_time: createTime,
             modify_time: createTime
         };

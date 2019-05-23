@@ -37,7 +37,7 @@ module.exports = class extends think.Model {
 
     // 添加文章
     async insert(data) {
-        const tags = data.tag;
+        const tags = Array.from(data.tag);
         data = this.parseContent(data);
         delete data.tag;
         const id = await this.add(data);

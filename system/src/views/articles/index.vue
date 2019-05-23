@@ -13,24 +13,24 @@
         </el-header>
         <el-main>
             <el-table :data="tableList" border style="width: 100%">
-                <el-table-column prop="title" label="文章名称" width="200">
+                <el-table-column prop="title" label="文章名称" width="250" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="category" label="分类" width="200">
+                <el-table-column prop="category" label="分类" width="100">
                     <template slot-scope="scope">{{scope.row.category.slug}}</template>
                 </el-table-column>
-                <el-table-column prop="view" label="阅读量" width="180">
+                <el-table-column prop="view" label="阅读量" width="100">
                 </el-table-column>
                 <el-table-column prop="create_time" label="发布时间">
                     <template slot-scope="scope">
                         <span>{{new Date(scope.row.create_time * 1000).toLocaleString()}}</span>
                     </template>
                 </el-table-column>
-                <el-table-column prop="status" label="状态">
+                <el-table-column prop="status" label="状态" width="100">
                     <template slot-scope="scope">
                         <span>{{scope.row.status=='99'?'发布':'草稿'}}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="200">
                     <template slot-scope="scope">
                         <el-button type="primary" size="mini" @click="onEdit(scope.row.id)">编辑</el-button>
                         <el-button type="danger" size="mini" @click="onDelete(scope.row.id,scope.row.index)">删除</el-button>
