@@ -72,11 +72,15 @@ module.exports = class extends Base {
         return this.success({ content: content });
     }
     async getBlogByIdAction() {
+        let defaultFieldReverse = "markdown";
+        let fieldReverse = this.get("fieldReverse");
+        !fieldReverse ? (fieldReverse = defaultFieldReverse) : "";
         const params = {
             id: this.get("id")
         };
         const content = await this.model("content")
             .where(params)
+            .fieldReverse(fieldReverse)
             .find();
         this.assign("content", content);
         this.assign("title", content.title);
@@ -87,6 +91,37 @@ module.exports = class extends Base {
             .where(params)
             .increment("view");
         return this.success({ content: content });
+    }
+    async getLastAndNextBlogAction() {
+        let date = this.post("date"); //当前博客
+        let lastBlogSql = ` 
+        select id,title from sx_content where abs(publish_time-str_to_date('${date}','%Y-%m-%d %T'))
+         in( select min(abs(publish_time-str_to_date('${date}','%Y-%m-%d %T'))) from sx_content where status=99 
+         and publish_time<'${date}' and type = 'post')
+        `;
+        let nextBlogSql = ` 
+        select id,title from sx_content where abs(publish_time-str_to_date('${date}','%Y-%m-%d %T'))
+        in( select min(abs(publish_time-str_to_date('${date}','%Y-%m-%d %T'))) from sx_content where status=99 
+        and publish_time>'${date}' and type = 'post')
+        `;
+        let lastBlog = await this.model().query(lastBlogSql);
+        let nextBlog = await this.model().query(nextBlogSql);
+        this.success({ lastBlog, nextBlog });
+    }
+    async changeLikesAction() {
+        let type = this.get("type"),
+            id = this.get("id");
+        if (type == "plus") {
+            this.model("content")
+                .where({ id })
+                .increment("like");
+            return this.success({ msg: "喜欢+1！" });
+        } else {
+            this.model("content")
+                .where({ id })
+                .decrement("like");
+            return this.success({ msg: "取消喜欢" });
+        }
     }
     async commentAction() {
         const params = {

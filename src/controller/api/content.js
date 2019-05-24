@@ -106,8 +106,9 @@ module.exports = class extends BaseRest {
             tag: this.post("tag"),
             type: this.post("type"),
             thumb: this.post("thumb") || "",
-            publishTime,
+            publish_time: publishTime,
             view: 0,
+            like: 0,
             recommend: this.post("recommend"),
             // create_time: createTime,
             modify_time: createTime
