@@ -6,6 +6,6 @@ module.exports = class extends Base {
         return this.display("blog/index_index");
     }
     reactAction() {
-        return this.display("react/index_index");
+        return this.display("react/backend_index");
     }
 };

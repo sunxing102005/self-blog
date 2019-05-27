@@ -2,6 +2,6 @@ const Base = require("./base.js");
 
 module.exports = class extends Base {
     async indexAction() {
-        await this.display("react/blog_index");
+        return this.display("react/backend_index");
     }
 };
