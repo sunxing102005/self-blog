@@ -3,10 +3,10 @@
 node_modules/
 runtime/*
 logs/
-www/uploads
+# www/uploads
 test/
-www/static
-view/blog
+# www/static
+# view/blog
 .vscode
 app/
 .idea/
