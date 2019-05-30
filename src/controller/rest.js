@@ -25,7 +25,7 @@ module.exports = class extends think.Controller {
             (this.userInfo.name && this.userInfo.name.indexOf("Error") != -1)
         );
 
-        if (!isAllowedResource && !isLogin && !isAllowedMethod) {
+        if (!isAllowedResource && !isLogin) {
             return this.ctx.throw(401, "请登录后操作");
         }
     }
