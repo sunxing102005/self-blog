@@ -19,7 +19,9 @@ module.exports = class extends BaseRest {
             last_login_time: new Date().getTime() / 1000
         });
         const token = await this.session("userInfo", userInfo);
-        think.logger.info(token);
+        think.logger.info("login login");
+        think.logger.info("userInfo", userInfo);
+        think.logger.info("token", token);
         return this.success({ token: token });
     }
 };
