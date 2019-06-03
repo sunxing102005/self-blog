@@ -24,9 +24,9 @@ module.exports = class extends think.Controller {
             typeof this.userInfo.TokenExpiredError !== "undefined" ||
             (this.userInfo.name && this.userInfo.name.indexOf("Error") != -1)
         );
-        think.logger.info("this.resource", this.resource);
-        think.logger.info("this.userInfo", this.userInfo);
-        think.logger.info("*********************");
+        console.log("this.resource", this.resource);
+        console.log("this.userInfo", this.userInfo);
+        console.log("*********************");
         if (!isAllowedResource && !isLogin) {
             return this.ctx.throw(401, "请登录后操作");
         }

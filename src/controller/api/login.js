@@ -22,11 +22,12 @@ module.exports = class extends BaseRest {
         think.logger.info("XXXLLLKKK");
         console.log("userInfo", userInfo);
         think.logger.info("userInfo", userInfo);
-        think.logger.info("token", token);
+        // think.logger.info("token", token);
         const token = await this.session("userInfo", userInfo);
-        think.logger.info("login login");
-        think.logger.info("userInfo", userInfo);
-        think.logger.info("token", token);
+        // think.logger.info("login login");
+        // think.logger.info("userInfo", userInfo);
+        // think.logger.info("token", token);
+        console.log("token", token);
         return this.success({ token: token });
     }
 };
