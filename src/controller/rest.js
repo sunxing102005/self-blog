@@ -1,5 +1,5 @@
 const assert = require("assert");
-
+const jwt = require("jsonwebtoken");
 module.exports = class extends think.Controller {
     static get _REST() {
         return true;
@@ -21,15 +21,27 @@ module.exports = class extends think.Controller {
         // console.log('userinfo', this.userInfo);
         const isAllowedMethod = this.isMethod("GET");
         const isAllowedResource = this.resource === "login";
-        const isLogin = !(
-            think.isEmpty(this.userInfo) ||
-            typeof this.userInfo.TokenExpiredError !== "undefined" ||
-            (this.userInfo.name && this.userInfo.name.indexOf("Error") != -1)
+        if (isAllowedResource) {
+            return true;
+        }
+        // const isLogin = !(
+        //     think.isEmpty(this.userInfo) ||
+        //     typeof this.userInfo.TokenExpiredError !== "undefined" ||
+        //     (this.userInfo.name && this.userInfo.name.indexOf("Error") != -1)
+        // );
+        // console.log(
+        //     'this.header["Admin-Token"]',
+        //     this.ctx.request.header["access_token"]
+        // );
+        const headerInfo = jwt.verify(
+            this.ctx.request.header["access_token"],
+            "sunx"
         );
-        console.log("this.resource", this.resource);
-        console.log("this.userInfo", this.userInfo);
+        // console.log("opp", op);
+        // console.log("this.resource", uerInfo.username);
+        // console.log("this.userInfo", uerInfo);
         console.log("*********************");
-        if (!isAllowedResource && !isLogin) {
+        if (!isAllowedResource && !headerInfo.userInfo) {
             return this.ctx.throw(401, "请登录后操作");
         }
     }
