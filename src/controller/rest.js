@@ -33,8 +33,10 @@ module.exports = class extends think.Controller {
         //     'this.header["Admin-Token"]',
         //     this.ctx.request.header["access_token"]
         // );
+        console.log("accesstoken", this.ctx.request.header["accesstoken"]);
+        console.log("accesstoken2", this.header["accesstoken"]);
         const headerInfo = jwt.verify(
-            this.ctx.request.header["access_token"],
+            this.ctx.request.header["accesstoken"],
             "sunx"
         );
         // console.log("opp", op);

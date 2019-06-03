@@ -62,7 +62,7 @@ exports.session = {
         handle: JWTSession,
         secret: "sunx", // secret is reqired
         tokenType: "header", // ['query', 'body', 'header', 'cookie'], 'cookie' is default
-        tokenName: "access_token", // if tokenType not 'cookie', this will be token name, 'jwt' is default
+        tokenName: "accesstoken", // if tokenType not 'cookie', this will be token name, 'jwt' is default
         sign: {
             expiresIn: 60 * 60 * 12
         },
