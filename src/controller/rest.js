@@ -34,18 +34,20 @@ module.exports = class extends think.Controller {
         //     this.ctx.request.header["access_token"]
         // );
         console.log("accesstoken", this.ctx.request.header["accesstoken"]);
-        console.log("accesstoken2", this.header["accesstoken"]);
-        const headerInfo = jwt.verify(
-            this.ctx.request.header["accesstoken"],
-            "sunx"
-        );
+        // let headerInfo = {};
+        try {
+            jwt.verify(this.ctx.request.header["accesstoken"], "sunx");
+        } catch (err) {
+            return this.ctx.throw(401, err);
+        }
+
         // console.log("opp", op);
         // console.log("this.resource", uerInfo.username);
         // console.log("this.userInfo", uerInfo);
         console.log("*********************");
-        if (!isAllowedResource && !headerInfo.userInfo) {
-            return this.ctx.throw(401, "请登录后操作");
-        }
+        // if (!isAllowedResource && !headerInfo.userInfo) {
+        //     return this.ctx.throw(401, "请登录后操作");
+        // }
     }
     /**
      * get resource
