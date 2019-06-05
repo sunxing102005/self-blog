@@ -1,7 +1,7 @@
 const Base = require("./base.js");
 const client = require("prom-client");
 const register = client.register;
-const ipUtil = require("../util/ip");
+const ipUtil = require("../utils/ip");
 module.exports = class extends Base {
     async indexAction() {
         const ip = ipUtil.getIp();

@@ -1,6 +1,6 @@
 import setCounter from "../../bootstrap/counter";
 import setGauge from "../../bootstrap/gauge";
-const ipUtil = require("../util/ip");
+const ipUtil = require("../../utils/ip");
 module.exports = (options, app) => {
     return async (ctx, next) => {
         if (
