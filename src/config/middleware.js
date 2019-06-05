@@ -2,6 +2,7 @@ const path = require("path");
 const isDev = think.env === "development";
 const cors = require("koa2-cors");
 // const whiteList = ["http://localhost:8362/", "http://47.97.161.236:8362/"];
+const monitor = require("./middleware/monitor.middleware");
 module.exports = [
     {
         handle: cors,
@@ -17,6 +18,11 @@ module.exports = [
             logRequest: isDev,
             sendResponseTime: isDev
         }
+    },
+    {
+        handle: monitor,
+        enable: true,
+        options: {}
     },
     {
         handle: "resource",

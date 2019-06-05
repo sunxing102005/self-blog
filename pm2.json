@@ -3,7 +3,7 @@
         {
             "name": "self_blog",
             "script": "production.js",
-            "cwd": "/root/self_blog/",
+            "cwd": "/Users/xing.sun/work2018/learn/think-js/projects/self-blog",
             "exec_mode": "fork",
             "max_memory_restart": "1G",
             "autorestart": true,
