@@ -19,11 +19,7 @@ module.exports = [
             sendResponseTime: isDev
         }
     },
-    {
-        handle: monitor,
-        enable: true,
-        options: {}
-    },
+
     {
         handle: "resource",
         enable: true,
@@ -31,6 +27,11 @@ module.exports = [
             root: path.join(think.ROOT_PATH, "www"),
             publicPath: /^\/(static|uploads|favicon\.ico|index\.html|admin\.html)/
         }
+    },
+    {
+        handle: monitor,
+        enable: true,
+        options: {}
     },
     {
         handle: "trace",

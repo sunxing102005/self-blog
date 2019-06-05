@@ -6,7 +6,8 @@ module.exports = (options, app) => {
     return async (ctx, next) => {
         if (
             ctx.path.indexOf("static") !== -1 ||
-            ctx.path.indexOf("metrics") !== -1
+            ctx.path.indexOf("metrics") !== -1 ||
+            ctx.path.indexOf("uploads") !== -1
         ) {
             return next();
         }
