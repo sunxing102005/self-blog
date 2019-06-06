@@ -2,7 +2,7 @@
 import setGauge from "../../bootstrap/gauge";
 import setHistogram from "../../bootstrap/histogram";
 const ipUtil = require("../../utils/ip");
-const packageConfig = require("../package.json");
+const packageConfig = require("../../../package.json");
 const moduleName = packageConfig.name;
 module.exports = (options, app) => {
     return async (ctx, next) => {
