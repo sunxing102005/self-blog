@@ -2,6 +2,8 @@ import setCounter from "../../bootstrap/counter";
 import setGauge from "../../bootstrap/gauge";
 import { think } from "thinkjs";
 const ipUtil = require("../../utils/ip");
+const packageConfig = require("../package.json");
+const moduleName = packageConfig.name;
 module.exports = (options, app) => {
     return async (ctx, next) => {
         if (
@@ -13,7 +15,6 @@ module.exports = (options, app) => {
         }
         const ip = ipUtil.getIp();
         console.log("ip_ip", ip);
-        // think.logger.info("ip_ip", ip);
         //设置prometheus metric
         const path = ctx.path;
         let namePrefix = path && path.replace(/\/|-/gi, "_");
@@ -22,7 +23,7 @@ module.exports = (options, app) => {
         //Counter
         //某接口请求个数
         const counter = setCounter(path, namePrefix + "_total");
-        counter.labels(ctx.module, path, ctx.method).inc(1);
+        counter.labels(moduleName, path, ctx.method).inc(1);
 
         await next();
         //Gauge
@@ -31,6 +32,6 @@ module.exports = (options, app) => {
         const status = ctx.response.status;
         const costTime = (etime - stime) / 1000;
         const gauge = setGauge(path, "duration_seconds");
-        gauge.labels(ctx.module, path, ctx.method, status).set(costTime);
+        gauge.labels(moduleName, path, ctx.method, status).set(costTime);
     };
 };
