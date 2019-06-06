@@ -13,7 +13,7 @@ module.exports = (options, app) => {
         }
         const ip = ipUtil.getIp();
         console.log("ip_ip", ip);
-        think.logger.info("ip_ip", ip);
+        // think.logger.info("ip_ip", ip);
         //设置prometheus metric
         const path = ctx.path;
         let namePrefix = path && path.replace(/\/|-/gi, "_");

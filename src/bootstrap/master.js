@@ -1,7 +1,7 @@
 const fs = require("fs");
 think.beforeStartServer(async () => {
     // 压缩模板
-    think.logger.info("think.env", think.env);
+    // think.logger.info("think.env", think.env);
     if (think.env === "production") {
         if (!fs.existsSync(think.ROOT_PATH + "/runtime/view/")) {
             fs.mkdirSync(think.ROOT_PATH + "/runtime/view/");
