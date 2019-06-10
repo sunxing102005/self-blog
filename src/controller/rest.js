@@ -20,7 +20,8 @@ module.exports = class extends think.Controller {
         });
         // console.log('userinfo', this.userInfo);
         const isAllowedMethod = this.isMethod("GET");
-        const isAllowedResource = this.resource === "login";
+        const isAllowedResource =
+            this.resource === "login" || this.resource === "meta";
         if (isAllowedResource) {
             return true;
         }

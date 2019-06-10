@@ -9,7 +9,7 @@ module.exports = (options, app) => {
         if (
             ctx.path.indexOf("static") !== -1 ||
             ctx.path.indexOf("metrics") !== -1 ||
-            ctx.path.indexOf("uploads") !== -1
+            ctx.path.indexOf("assets") !== -1
         ) {
             return next();
         }
